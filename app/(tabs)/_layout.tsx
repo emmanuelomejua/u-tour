@@ -1,15 +1,68 @@
 import { Tabs } from 'expo-router';
 import React from 'react';
-import { Platform } from 'react-native';
+import { Platform, View } from 'react-native';
+import { FontAwesome, Ionicons, MaterialIcons  } from '@expo/vector-icons'
+import { Colors } from '@/constants/Colors';
 
 
 
 export default function TabLayout() {
 
-
   return (
-    <Tabs>
-      
+    <Tabs screenOptions={{
+      tabBarStyle: {
+        backgroundColor: Colors.bgColor,
+        padding: 0,
+        borderTopWidth: 0
+      },
+      tabBarShowLabel: false,
+      tabBarActiveTintColor: Colors.black,
+      tabBarInactiveTintColor: '#999'
+    }}>
+      <Tabs.Screen name='index' 
+        options={{
+          tabBarIcon: ({color}) => (
+            <Ionicons name='compass' color={color} size={28}/>
+          )
+        }}
+      />
+      <Tabs.Screen name='category' 
+        options={{
+          tabBarIcon: ({color}) => (
+            <MaterialIcons name='space-dashboard' color={color} size={28} />
+          )
+        }}
+      />
+      <Tabs.Screen name='search' 
+        options={{
+          tabBarIcon: ({color}) => (
+            <View style={{
+              backgroundColor: Colors.primaryColor,
+              paddingHorizontal: 16,
+              paddingVertical: 12,
+              borderRadius: 10,
+              height: 40,
+              width: 35
+            }}>
+              <Ionicons name='search' color={Colors.white} size={28} />
+          </View>
+          )
+        }}
+      />
+      <Tabs.Screen name='bookmarks' 
+        options={{
+          tabBarIcon: ({color}) => (
+            <Ionicons name='bookmark' color={color} size={28} />
+          )
+        }}
+      />
+      <Tabs.Screen name='profile' 
+        options={{
+          tabBarIcon: ({color}) => (
+            <FontAwesome name='user' color={color} size={28} />
+          )
+        }}
+      />
     </Tabs>
   );
 }
