@@ -38,13 +38,15 @@ export default function TabLayout() {
           tabBarIcon: ({color}) => (
             <View style={{
               backgroundColor: Colors.primaryColor,
-              paddingHorizontal: 16,
-              paddingVertical: 12,
+              paddingHorizontal: 4,
+              paddingVertical: 3,
               borderRadius: 10,
               height: 40,
-              width: 35
+              width: 45,
+              justifyContent: 'center',
+              alignItems: 'center'
             }}>
-              <Ionicons name='search' color={Colors.white} size={28} />
+              <Ionicons name='search' color={Colors.white} size={20} />
           </View>
           )
         }}
