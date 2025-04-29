@@ -1,9 +1,11 @@
 import { View, Text, StyleSheet, TouchableOpacity, Image, TextInput } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import { Stack } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import { Colors } from '@/constants/Colors';
 import { useHeaderHeight } from '@react-navigation/elements'
+import CategoryBtn from '@/components/CategoryBtn';
+import Listings from '@/components/Listings';
 
 
 
@@ -11,6 +13,12 @@ import { useHeaderHeight } from '@react-navigation/elements'
 const Page = () => {
 
   const headerHeight = useHeaderHeight();
+  const [category, setCategory] = useState('All');
+
+
+  const CatChanged = (category: string) => {
+    setCategory(category);
+  }
 
 
   return (
@@ -59,6 +67,10 @@ const Page = () => {
             <Ionicons name='options' size={28} style={{ marginLeft: 5 }} color={Colors.white}/>
           </TouchableOpacity>
         </View>
+
+        <CategoryBtn onCategoryChanged={CatChanged}/>
+
+        <Listings/>
       </View>
     </>
   )
