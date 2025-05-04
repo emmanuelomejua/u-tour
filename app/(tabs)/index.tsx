@@ -6,6 +6,7 @@ import { Colors } from '@/constants/Colors';
 import { useHeaderHeight } from '@react-navigation/elements'
 import CategoryBtn from '@/components/CategoryBtn';
 import Listings from '@/components/Listings';
+import destinationData from '@/data/destinations.json';
 
 
 
@@ -17,7 +18,9 @@ const Page = () => {
 
 
   const CatChanged = (category: string) => {
+    console.log('category', category)
     setCategory(category);
+
   }
 
 
@@ -70,7 +73,7 @@ const Page = () => {
 
         <CategoryBtn onCategoryChanged={CatChanged}/>
 
-        <Listings/>
+        <Listings listings={destinationData}/>
       </View>
     </>
   )
