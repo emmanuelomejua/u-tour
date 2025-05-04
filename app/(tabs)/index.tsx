@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, TouchableOpacity, Image, TextInput } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity, Image, TextInput, ScrollView } from 'react-native'
 import React, { useState } from 'react'
 import { Stack } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
@@ -7,6 +7,8 @@ import { useHeaderHeight } from '@react-navigation/elements'
 import CategoryBtn from '@/components/CategoryBtn';
 import Listings from '@/components/Listings';
 import destinationData from '@/data/destinations.json';
+import GroupListing from '@/components/GroupListing';
+import groupdata from '@/data/groups.json';
 
 
 
@@ -20,8 +22,8 @@ const Page = () => {
   const CatChanged = (category: string) => {
     console.log('category', category)
     setCategory(category);
-
   }
+
 
 
   return (
@@ -56,24 +58,28 @@ const Page = () => {
       }}/>
 
       <View style={[styles.container, { paddingTop: headerHeight }]}>
-        <Text style={styles.headerText}>
-          Explore the Opportunities
-        </Text>
+        <ScrollView showsVerticalScrollIndicator={false}> 
+          <Text style={styles.headerText}>
+            Explore the Opportunities
+          </Text>
 
-        <View style={styles.searchWrapper}>
-          <View style={styles.search}>
-            <Ionicons name='search' size={18} />
-            <TextInput placeholder='Search...'/>
+          <View style={styles.searchWrapper}>
+            <View style={styles.search}>
+              <Ionicons name='search' size={18} />
+              <TextInput placeholder='Search...'/>
+            </View>
+
+            <TouchableOpacity onPress={() => {}} style={styles.filterBtn}>
+              <Ionicons name='options' size={28} style={{ marginLeft: 5 }} color={Colors.white}/>
+            </TouchableOpacity>
           </View>
 
-          <TouchableOpacity onPress={() => {}} style={styles.filterBtn}>
-            <Ionicons name='options' size={28} style={{ marginLeft: 5 }} color={Colors.white}/>
-          </TouchableOpacity>
-        </View>
+          <CategoryBtn onCategoryChanged={CatChanged}/>
 
-        <CategoryBtn onCategoryChanged={CatChanged}/>
+          <Listings listings={destinationData} category={category}/>
 
-        <Listings listings={destinationData}/>
+          <GroupListing listings={groupdata}/>
+        </ScrollView>
       </View>
     </>
   )
